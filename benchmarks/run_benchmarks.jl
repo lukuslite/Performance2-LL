@@ -13,8 +13,21 @@ using BenchmarkTools
 
 list_sizes = [10, 10^2, 10^3, 10^4, 10^5]
 
-time_set10 = ...
-time_sethalf = ...
+time_set10 = Vector{Float64}[]
+time_sethalf = Vector{Float64}[]
 
-time_2loops10 = ...
-time_2loopshalf = ...
+time_2loops10 = Vector{Float64}[]
+time_2loopshalf = Vector{Float64}[]
+
+n = 0
+
+for i in 1:length(list_sizes)
+    global n = list_sizes[i]
+
+    push!(time_2loops10,[n,@belapsed(unique_2loops(data),setup=(data=rand(1:10,n)))])
+    push!(time_2loopshalf,[n,@belapsed(unique_2loops(data),setup=(data=rand(1:n÷2,n)))])
+
+    push!(time_set10,[n,@belapsed(unique_set(data),setup=(data=rand(1:10,n)))])
+    push!(time_sethalf,[n,@belapsed(unique_set(data),setup=(data=rand(1:n÷2,n)))])
+
+end

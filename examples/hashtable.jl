@@ -8,3 +8,58 @@ using Performance2
 # Be sure you look at the result. Then fill in the table in the README with the number of
 # collisions you observe for each table size.
 
+table = create_hashtable(Char,16)
+for i in 'a':'z'
+    push_hashtable!(table, i)
+end
+
+count = 0
+for i in 1:length(table)
+    if length(table[i]) > 1
+        global count += 1
+    end
+end
+
+print(count,' ')
+count = 0
+
+table = create_hashtable(Char,32)
+for i in 'a':'z'
+    push_hashtable!(table, i)
+end
+
+for i in 1:length(table)
+    if length(table[i]) > 1
+        global count += 1
+    end
+end
+
+print(count,' ')
+count = 0
+
+table = create_hashtable(Char,64)
+for i in 'a':'z'
+    push_hashtable!(table, i)
+end
+
+for i in 1:length(table)
+    if length(table[i]) > 1
+        global count += 1
+    end
+end
+
+print(count,' ')
+count = 0
+
+table = create_hashtable(Char,128)
+for i in 'a':'z'
+    push_hashtable!(table, i)
+end
+
+for i in 1:length(table)
+    if length(table[i]) > 1
+        global count += 1
+    end
+end
+
+print(count,' ')

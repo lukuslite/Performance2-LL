@@ -7,8 +7,22 @@ function unique_2loops(list::AbstractVector)
     # Implement your own version of `unique`, a function that will return a new vector containing
     # each unique item in `list` (i.e., it drops duplicates).
     newlist = eltype(list)[]
+    if length(list) != 0 
+        push!(newlist,list[1])
     # Here, use two nested `for` loops to `push!` items onto `newlist` only if they do not appear
     # earlier in the list
+        for i in 1:length(list)
+            check = 0
+            for j in 1:length(newlist)
+                if list[i] == newlist[j]
+                    check = 1
+                end
+            end
+            if check == 0
+                push!(newlist,list[i])
+            end
+        end
+    end
 
     return newlist
 end
@@ -16,6 +30,8 @@ end
 function unique_set(list::AbstractVector)
     # Implement a second version of `unique`.
     # This time, insert all the items from `list` into a `Set` and then collect(set)
+    newset = Set(list)
+    return collect(newset)
 end
 
 ###
